@@ -46,7 +46,6 @@ custom_user_and_admin/
 ├── manage.py
 ├── requirements.txt
 └── README.md
-
 ```
 
 
