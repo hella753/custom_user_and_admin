@@ -46,12 +46,7 @@ class User(AbstractBaseUser, PermissionsMixin):
             "unique": "A user with that username already exists."
         }
     )
-    # ბოლო შესვლის მოდიფიკაციის საშუალება არ გვქონდეს
-    last_login = models.DateTimeField(
-        "last login",
-        default=datetime.datetime.now(),
-        editable = False
-    )
+
     date_joined = models.DateTimeField("date joined", auto_now_add=True)
     first_name = models.CharField("first name", max_length=150, blank=True)
     last_name = models.CharField("last name", max_length=150, blank=True)

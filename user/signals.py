@@ -12,4 +12,4 @@ def create_cart_for_user(sender, **kwargs):
     if not user_obj.is_superuser:
         cart = UserCart(user=user_obj)
         cart.save()
-        print(f"cart has been created {cart.id} {user_obj}")
+        print(f"cart has been created {user_obj}")

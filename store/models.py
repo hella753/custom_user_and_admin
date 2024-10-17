@@ -14,6 +14,7 @@ class Category(MPTTModel):
         related_name="children"
     )
 
+
     class MPTTMeta:
         order_insertion_by = ['category_name']
 

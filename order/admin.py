@@ -17,7 +17,7 @@ class OrderAdmin(admin.ModelAdmin):
 
 @admin.register(UserCart)
 class UserCartAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user')
+    list_display = ('user',)
     list_select_related = ('user',)
     search_fields = ('user__username',)
     list_per_page = 10

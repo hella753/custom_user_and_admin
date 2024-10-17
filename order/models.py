@@ -22,11 +22,11 @@ class Order(models.Model):
         verbose_name="პროდუქტი"
     )
     product_quantity = models.PositiveIntegerField("რაოდენობა")
-    # order_customer = models.ForeignKey(
-    #     User,
-    #     on_delete=models.CASCADE,
-    #     verbose_name="მომხმარებელი"
-    # )
+    order_customer = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        verbose_name="მომხმარებელი"
+    )
     order_address = models.CharField(max_length=100, verbose_name="მისამართი")
 
     def __str__(self):
@@ -34,7 +34,7 @@ class Order(models.Model):
 
 
 class UserCart(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name="მომხმარებელი" )
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, verbose_name="მომხმარებელი" )
 
     def __str__(self):
-        return f"{self.id}"
+        return f"{self.user}"
