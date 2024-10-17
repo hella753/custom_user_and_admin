@@ -34,7 +34,7 @@ class Order(models.Model):
 
 
 class UserCart(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="მომხმარებელი" )
+    user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name="მომხმარებელი" )
 
     def __str__(self):
         return f"{self.id}"

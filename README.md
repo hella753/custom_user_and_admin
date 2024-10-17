@@ -8,6 +8,12 @@ Uses HTML templates for store app and has a simple design. It also provides basi
 statistical analysis per category.
 The Project uses Django and sqlite3 database.
 
+## What's new this week?
+* **Custom User model** and **Custom User manager** was added. Now you can only log in on admin panel via an email.
+* **Custom ModelAdmins** are created on every app for more personalized views in admin panel.
+* **UserCart** model is added to Order app which uses OneToOne relationship.
+* **Signal** is added in the User app for when the user is created to create the user's cart automatically as well.
+
 
 Project Structure:
 ```
@@ -56,7 +62,7 @@ Tables created: `store_category`, `store_product`, `store_product_product_catego
 `store_product` uses many-to-many relationship and is connected to `store_category` on **product_category**
 `store_category` uses recursive (many-to-one relationship to itself) for **parent**<br>
 `order_order` uses many-to-one relationship and is connected to `store_product` on **product**<br>
-`order_usercart` uses many-to-one relationship and is connected to `user_user` on **user**
+`order_usercart` uses one-to-one relationship and is connected to `user_user` on **user**
 `user_user` custom user model
 
 
