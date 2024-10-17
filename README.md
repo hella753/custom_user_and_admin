@@ -87,7 +87,7 @@ For testing purposes there are 23 product, 19 category, 3 user and 3 usercart re
   * OrderAdmin inherits from admin.ModelAdmin and adds `get_total_price()` for calculating total sum of the order
   * UserCartAdmin inherits from admin.ModelAdmin and provides customization.
 * **Order Detail Page** - Can be accessed at /order/{order_id}/ Displays the details of individual order in json.
-* **Admin Panel** - Can be accessed at `/admin/`. Default username: `admin`, password: `admin`.
+* **Admin Panel** - Can be accessed at `/admin/`. Default email: `admin@example.com`, password: `admin`.
 * **Database** - sqlite3 database is used.
 
 ## Dependencies
