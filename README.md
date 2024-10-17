@@ -8,7 +8,7 @@ Uses HTML templates for store app and has a simple design. It also provides basi
 statistical analysis per category.
 The Project uses Django and sqlite3 database.
 
-### Error მაქვს ერთი რომლის დეტალებიც user/admin.py-ში მიწერია </3 
+### SOLVED(BUT AFTER DEADLINE) Error მაქვს ერთი რომლის დეტალებიც user/admin.py-ში მიწერია </3 
 
 ## What's new this week?
 * **Custom User model** and **Custom User manager** was added. Now you can only log in on admin panel via an email.

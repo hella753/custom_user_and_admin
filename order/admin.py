@@ -5,7 +5,7 @@ from order.models import Order, UserCart
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
     list_display = ('id', 'order_status', 'order_date', 'product', 'get_total_price')
-    list_filter = ('order_status', 'id')
+    list_filter = ('order_status',)
     list_select_related = ('product',)
     search_fields = ('product__product_name', 'id')
     list_per_page = 10

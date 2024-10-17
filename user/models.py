@@ -1,8 +1,8 @@
-import datetime
 from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.db import models
+from django.utils import timezone
 
 
 class UserManager(BaseUserManager):
@@ -47,7 +47,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         }
     )
 
-    date_joined = models.DateTimeField("date joined", auto_now_add=True)
+    date_joined = models.DateTimeField(default=timezone.now)
     first_name = models.CharField("first name", max_length=150, blank=True)
     last_name = models.CharField("last name", max_length=150, blank=True)
     is_staff = models.BooleanField(
@@ -55,6 +55,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         default=False,
         help_text="Designates whether the user can log into this admin site.",
     )
+    is_active = models.BooleanField("active", default=True)
 
     # ჩვენი იუზერ მენეჯერი გამოიყენოს
     objects = UserManager()
