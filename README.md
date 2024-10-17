@@ -11,30 +11,20 @@ The Project uses Django and sqlite3 database.
 
 Project Structure:
 ```
-simple_rendering_with_three_page/
+custom_user_and_admin/
 ├── media
 ├── order
 │   ├── admin.py
-│   ├── apps.py
-│   ├── __init__.py
 │   ├── migrations
-│   │   ├── __init__.py
 │   ├── models.py
-│   ├── tests.py
 │   ├── views.py
 │   └── urls.py
-├── simple_rendering_with_three_page
-│   ├── __init__.py
-│   ├── asgi.py
+├── custom_user_and_admin
 │   ├── settings.py
 │   ├── urls.py
-│   └── wsgi.py
 ├── store
 │   ├── admin.py
-│   ├── apps.py
-│   ├── __init__.py
 │   ├── migrations
-│   │   ├── __init__.py
 │   ├── static
 │   │   ├── store
 │   │   │   ├── style.css
@@ -45,12 +35,8 @@ simple_rendering_with_three_page/
 ├── user
 │   ├── admin.py
 │   ├── apps.py
-│   ├── __init__.py
 │   ├── migrations
-│   │   ├── __init__.py
 │   ├── models.py
-│   ├── tests.py
-│   ├── views.py
 │   └── signals.py
 │   ├── models.py
 │   ├── tests.py
