@@ -83,7 +83,7 @@ For testing purposes there are 23 product, 19 category, 3 user and 3 usercart re
   * `PriceRangeFilter()` inherits from **admin.SimpleListFilter** and is a custom class for filtering product_price which is a decimal value.
 * **Product Detail Page** - Can be accessed `/category/{category_id}/products/{product_id}` and Displays the information about the individual Product such as id, name, description, price, ancestor categories, image and quantity.
 * **User** - Has a custom **User** model with an email as username field, has a custom **UserManager** which has `create_user()` and `create_superuser() `methods. 
-  * UserAdmin inherits from admin.ModelAdmin and provides customization.
+  * UserAdmin inherits from UserAdmin and provides customization.
   * in **signals.py** is a method `create_cart_for_user()` which automatically creates an UserCart object everytime new user is created and assigns the cart to that user.
 * **Order** - Can be accessed at /order/ Displays short info of the orders in json.
   * OrderAdmin inherits from admin.ModelAdmin and adds `get_total_price()` for calculating total sum of the order
