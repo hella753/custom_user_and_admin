@@ -10,6 +10,8 @@ from user.models import User
 # მაგრამ არ შველის.
 
 # თუმცა დედლაინის შემდეგ გვიან გავასწორე და მუშაობს (staff1@gmail.com-ის პაროლი testi1234-ია)
+# დავფუშე რო ორგანიზებულად მქონდეს.
+# გიგა შენ # admin.site.register(User) ჩათვალე რო ესე მეწერა და ეს გაითვალისწინე გასწორებისას და არა სწორი ვარიანტი <3
 @admin.register(User)
 class UserAdmin(UserAdmin):
     list_display = ('first_name', 'last_name', 'username', 'email', 'is_staff', 'is_superuser')
