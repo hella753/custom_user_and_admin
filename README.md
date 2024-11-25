@@ -12,7 +12,8 @@ The project uses **Django**, **SQLite**, and HTML templates for the store app, o
 
 ---
 
-## 🏗️ Project Structure  
+## 🏗️ Project Structure
+```
 custom_user_and_admin/
 ├── media/                      # Stores user-uploaded images
 ├── order/                      # Order app for orders and carts
@@ -44,7 +45,7 @@ custom_user_and_admin/
 ├── manage.py                   # Django CLI
 ├── requirements.txt            # Project dependencies
 └── README.md                   # Documentation
-
+```
 
 ---
 
