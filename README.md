@@ -1,117 +1,120 @@
-# Django Custom User model & Admin Optimization
+# 🎵 Musical Instruments Shop 🎸🎹🎷
 
+## 📖 Description  
+This **Musical Instruments Shop** project organizes products into categories and includes multiple pages:  
+- **Category Page**  
+- **Products Page**  
+- **Product Detail Page**  
+- **Order Data Page**  
+- **Order Detail JSON Page**  
 
-## Description
-The Musical instruments store with products ordered in categories. The project has several pages: one for categories, 
-one for products, one for product detail, one for order data and one for order detail data in json. 
-Uses HTML templates for store app and has a simple design. It also provides basic 
-statistical analysis per category.
-The Project uses Django and sqlite3 database.
+The project uses **Django**, **SQLite**, and HTML templates for the store app, offering a simple, functional design with basic statistical analysis per category.
 
-### SOLVED(BUT AFTER DEADLINE) Error მაქვს ერთი რომლის დეტალებიც user/admin.py-ში მიწერია </3 
+---
 
-## What's new this week?
-* **Custom User model** and **Custom User manager** was added. Now you can only log in on admin panel via an email.
-* **Custom ModelAdmins** are created on every app for more personalized views in admin panel.
-* **UserCart** model is added to Order app which uses OneToOne relationship.
-* **Signal** is added in the User app for when the user is created to create the user's cart automatically as well.
-
-
-Project Structure:
-```
+## 🏗️ Project Structure  
 custom_user_and_admin/
-├── media
-├── order
-│   ├── admin.py
-│   ├──migrations
-│   ├──models.py
-│   ├──views.py
-│   └──urls.py
-├── custom_user_and_admin
-│   ├── settings.py
-│   ├── urls.py
-├── store
-│   ├── admin.py
-│   ├── migrations
-│   ├── static
-│   │   ├── store
-│   │   │   ├── style.css
-│   ├── templates
-│   │   ├── category.html
-│   │   ├── detail.html
-│   │   ├── index.html
-├── user
-│   ├──admin.py
-│   ├──apps.py
-│   ├──migrations
-│   ├──models.py
-│   ├──signals.py
-│   └──tests.py
-├── db.sqlite3
-├── manage.py
-├── requirements.txt
-└── README.md
-```
+├── media/                      # Stores user-uploaded images
+├── order/                      # Order app for orders and carts
+│   ├── admin.py                # Admin customizations
+│   ├── migrations/             # Database migrations
+│   ├── models.py               # Order-related models
+│   ├── views.py                # Order-related views
+│   └── urls.py                 # URL routing for orders
+├── custom_user_and_admin/      # Project-level settings
+│   ├── settings.py             # Django settings
+│   ├── urls.py                 # Root URL configuration
+├── store/                      # Store app for products and categories
+│   ├── admin.py                # Admin customizations
+│   ├── migrations/             # Database migrations
+│   ├── static/                 # Static files (CSS, images)
+│   │   └── store/style.css     # Styles for the store
+│   ├── templates/              # HTML templates
+│   │   ├── category.html       # Category page
+│   │   ├── detail.html         # Product detail page
+│   │   ├── index.html          # Homepage
+├── user/                       # Custom user app
+│   ├── admin.py                # Admin customizations
+│   ├── apps.py                 # App configuration
+│   ├── migrations/             # Database migrations
+│   ├── models.py               # Custom user model
+│   ├── signals.py              # Signal for user cart creation
+│   └── tests.py                # Unit tests
+├── db.sqlite3                  # SQLite database
+├── manage.py                   # Django CLI
+├── requirements.txt            # Project dependencies
+└── README.md                   # Documentation
 
 
-Database name: `db` <br>
-Tables created: `store_category`, `store_product`, `store_product_product_category`(association table), `order_order`, `order_usercart`, `user_user`(and other automatically generated user tables)<br>
+---
 
-`store_product` uses many-to-many relationship and is connected to `store_category` on **product_category**<br>
-`store_category` uses recursive (many-to-one relationship to itself) for **parent**<br>
-`order_order` uses many-to-one relationship and is connected to `store_product` on **product**<br>
-`order_usercart` uses one-to-one relationship and is connected to `user_user` on **user**<br>
-`user_user` custom user model
+## 🛠️ Features  
+### **Store**
+1. **Category Page**  
+   - **URL:** `/` or `/category/`  
+   - Displays **6 root categories** with product counts and links to category pages.  
+   - Admin: Custom **CategoryAdmin** using `DraggableMPTTAdmin`.  
 
-For testing purposes there are 23 product, 19 category, 3 user and 3 usercart records in the database <3
+2. **Category Products Page**  
+   - **URL:** `/category/{category_id}/products`  
+   - Displays products in the category (or subcategories) with statistics like total price and quantity.  
+   - Features **Pagination**: 6 products per page.  
+   - Admin: Custom **ProductAdmin** with `get_total_price()` and **PriceRangeFilter** for filtering products by price.
 
-## **Components** ##
-* **store** - This app contains the models(Product and Category) and 3 views for the store.
-* **order** - This app contains the models(Order and UserCart) and 2 views for the order.
-* **user** - This app contains Custom user model which requires you to login via email. Also uses Custom UserManager
-* **media** - All user uploaded images go to the media folder.
-* **store/static** - for static files: CSS
-* **templates** - 3 HTML templates for rendering are stored here.
-* **db.sqlite3** - Database file.
+3. **Product Detail Page**  
+   - **URL:** `/category/{category_id}/products/{product_id}`  
+   - Displays detailed product information: name, description, price, quantity, ancestor categories, and image.
 
+---
 
-## **Features** ##
-* **Category** - Can be accessed at `/` or `/category/` Displays the 6 root categories and its products count with links to each category page. 
-  * CategoryAdmin inherits from DraggableMPTTAdmin and admin.ModelAdmin and provides customization.
-* **Category Products Page** - Can be accessed at `/category/{category_id}/products`. Displays all the products in that category or in its subcategories with statistics about the category and total sum of the product price including its quantity. Uses **Pagination** and Only 6 products are displayed in one page with their prices and images and each product is linked to its detail page. 
-  * ProductAdmin inherits from admin.ModelAdmin and adds `get_total_price()` for calculating total sum
-  * `PriceRangeFilter()` inherits from **admin.SimpleListFilter** and is a custom class for filtering product_price which is a decimal value.
-* **Product Detail Page** - Can be accessed `/category/{category_id}/products/{product_id}` and Displays the information about the individual Product such as id, name, description, price, ancestor categories, image and quantity.
-* **User** - Has a custom **User** model with an email as username field, has a custom **UserManager** which has `create_user()` and `create_superuser() `methods. 
-  * UserAdmin inherits from UserAdmin and provides customization.
-  * in **signals.py** is a method `create_cart_for_user()` which automatically creates an UserCart object everytime new user is created and assigns the cart to that user.
-* **Order** - Can be accessed at /order/ Displays short info of the orders in json.
-  * OrderAdmin inherits from admin.ModelAdmin and adds `get_total_price()` for calculating total sum of the order
-  * UserCartAdmin inherits from admin.ModelAdmin and provides customization.
-* **Order Detail Page** - Can be accessed at /order/{order_id}/ Displays the details of individual order in json.
-* **Admin Panel** - Can be accessed at `/admin/`. Default email: `admin@example.com`, password: `admin`.
-* **Database** - sqlite3 database is used.
+### **Order**
+1. **Order Data Page**  
+   - **URL:** `/order/`  
+   - Returns a **JSON** response summarizing orders.  
 
-## Dependencies
-* **Python 3.X**
-* **Django 5.1.1**
-* **Pillow 10.4.0** - Python Imaging Library adds image processing capabilities to your Python interpreter.
-* **Django-debug-toolbar** - Configurable set of panels that display various debug information about the current request/response.
-* **Django-mptt** - Reusable Django app which aims to make it easy for you to use MPTT(a technique for storing hierarchical data in a database).
+2. **Order Detail Page**  
+   - **URL:** `/order/{order_id}/`  
+   - Returns detailed **JSON** of a specific order.  
 
-## Usage
-Clone the repository:
-```bash
-git clone https://github.com/hella753/simple_rendering_with_three_page.git
-cd simple_rendering_with_three_page
-```
-To install the dependencies, use the following command in your terminal:
-```bash
-pip install -r requirements.txt
-```
-To run the development server, use the following command in your terminal:
-```bash
-python manage.py runserver
-```
-To access the application, open your browser and go to http://127.0.0.1:8000/
+3. **User Cart**  
+   - Automatically created for new users using **signals**.  
+   - One-to-One relationship with **User** model.  
 
+---
+
+### **User**  
+- Custom **User** model with email-based login.  
+- Admin: Custom **UserAdmin** for personalized views.  
+
+---
+
+### **Admin Panel**  
+- **URL:** `/admin/`  
+
+---
+
+## 📊 Database Design  
+- **Database Name:** `db.sqlite3`  
+- **Tables:**  
+  - `store_category` (recursive relationship for parent category)  
+  - `store_product` (many-to-many with `store_category`)  
+  - `order_order` (many-to-one with `store_product`)  
+  - `order_usercart` (one-to-one with `user_user`)  
+  - `user_user` (custom user model)  
+
+---
+
+## 🔧 Dependencies  
+- **Python 3.x**  
+- **Django 5.1.1**  
+- **Pillow 10.4.0**  
+- **Django-debug-toolbar**  
+- **Django-mptt**  
+
+---
+
+## 🚀 Usage  
+1. Clone the repository:  
+   ```bash
+   git clone https://github.com/hella753/musical_instruments_shop.git
+   cd musical_instruments_shop
